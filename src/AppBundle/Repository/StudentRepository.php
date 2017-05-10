@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class StudentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllStudents()
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.user','user')
+            ->join('s.classnumber','grade')
+            ->orderBy('grade.classnumber*1, grade.classnumber, s.lastname', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

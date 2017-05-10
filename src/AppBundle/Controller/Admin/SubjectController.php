@@ -9,21 +9,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Student;
 
-class StudentController extends Controller
+class SubjectController extends Controller
 {
     /**
      * @Template()
-     * @Route("/admin/students", name="admin_students")
+     * @Route("/admin/subjects", name="admin_subjects")
      *
      */
     public function indexAction(Request $request)
     {
-        $students = $this
-            ->get('doctrine')
-            ->getRepository('AppBundle:Student')
-            ->findAllStudents();
-        dump($students);
+        $subjects = $this->get('doctrine')->getRepository('AppBundle:Subject')->findAll();
 
-        return ['students' => $students];
+        return ['subjects' => $subjects];
     }
 }

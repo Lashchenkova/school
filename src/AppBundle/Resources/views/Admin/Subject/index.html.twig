@@ -1,6 +1,6 @@
 {% extends 'AppBundle::admin_base.html.twig' %}
 
-{% block title %}Students{% endblock %}
+{% block title %}Subjects{% endblock %}
 
 {% block stylesheets %}
     {% stylesheets 'bundles/app/css/students.css' filter='cssrewrite' %}
@@ -9,28 +9,24 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Students</h1>
+    <h1>Subjects</h1>
     <hr>
     <table class="table table-hover">
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Class</th>
-            <th>Date of Birth</th>
-            <th>Gender</th>
-            <th>Email</th>
+            <th>Subject</th>
+            <th>Teacher</th>
+            <th>Classes</th>
         </tr>
         </thead>
         <tbody>
-        {% for student in students %}
+        {% for subject in subjects %}
             <tr>
                 <td></td>
-                <td>{{ student.lastName }} {{ student.firstName }}</td>
-                <td>{{ student.classnumber.classNumber }}</td>
-                <td>{{ student.dateOfBirth|date("Y-m-d") }}</td>
-                <td>{{ student.gender }}</td>
-                <td>{{ student.user.email }}</td>
+                <td>{{ subject.name}}</td>
+                <td>{{ subject.lastName }} {{ subject.firstName }}</td>
+                {#<td>{{ subject.classes_list }}</td>#}
             </tr>
         {% endfor %}
         </tbody>

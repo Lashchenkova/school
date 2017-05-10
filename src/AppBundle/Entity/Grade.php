@@ -53,7 +53,7 @@ class Grade
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Student", mappedBy="classNumber")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Student", mappedBy="classnumber")
      */
     private $students;
 

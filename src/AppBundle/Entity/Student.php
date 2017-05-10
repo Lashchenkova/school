@@ -64,7 +64,7 @@ class Student
      *
      * Many Students have One ClassNumber
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Grade", inversedBy="student")
-     * @ORM\JoinColumn(name="ClassNumber", referencedColumnName="id")
+     * @ORM\JoinColumn(name="classnumber", referencedColumnName="id")
      *
      */
     private $classnumber;
