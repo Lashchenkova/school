@@ -5,24 +5,27 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Graduates
+ * Teacher
  *
- * @ORM\Table(name="graduates", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="teacher", uniqueConstraints={@ORM\UniqueConstraint(name="user_id_2", columns={"user_id"})}, indexes={@ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TeacherRepository")
  */
-class Graduates
+class Teacher
 {
+    const GENDER_MALE = 'm';
+    const GENDER_FEMALE = 'f';
+
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=30, nullable=false)
+     * @ORM\Column(name="FirstName", type="string", length=30, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=30, nullable=false)
+     * @ORM\Column(name="LastName", type="string", length=30, nullable=false)
      */
     private $lastname;
 
@@ -34,39 +37,25 @@ class Graduates
     private $dateofbirth;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="DateOfGraduation", type="date", nullable=false)
-     */
-    private $dateofgraduation;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=30, nullable=false)
+     * @ORM\Column(name="gender", type="string", options={"fixed": true}, nullable=false)
      */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=3, nullable=false)
-     */
-    private $role;
+    private $gender;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -80,7 +69,7 @@ class Graduates
      *
      * @param string $firstname
      *
-     * @return Graduates
+     * @return Teacher
      */
     public function setFirstname($firstname)
     {
@@ -104,7 +93,7 @@ class Graduates
      *
      * @param string $lastname
      *
-     * @return Graduates
+     * @return Teacher
      */
     public function setLastname($lastname)
     {
@@ -128,7 +117,7 @@ class Graduates
      *
      * @param \DateTime $dateofbirth
      *
-     * @return Graduates
+     * @return Teacher
      */
     public function setDateofbirth($dateofbirth)
     {
@@ -148,75 +137,27 @@ class Graduates
     }
 
     /**
-     * Set dateofgraduation
+     * Set gender
      *
-     * @param \DateTime $dateofgraduation
+     * @param string $gender
      *
-     * @return Graduates
+     * @return Teacher
      */
-    public function setDateofgraduation($dateofgraduation)
+    public function setGender($gender)
     {
-        $this->dateofgraduation = $dateofgraduation;
+        $this->gender = $gender;
 
         return $this;
     }
 
     /**
-     * Get dateofgraduation
-     *
-     * @return \DateTime
-     */
-    public function getDateofgraduation()
-    {
-        return $this->dateofgraduation;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Graduates
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
+     * Get gender
      *
      * @return string
      */
-    public function getEmail()
+    public function getGender()
     {
-        return $this->email;
-    }
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     *
-     * @return Graduates
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
+        return $this->gender;
     }
 
     /**
@@ -232,11 +173,11 @@ class Graduates
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\Users $user
+     * @param \AppBundle\Entity\User $user
      *
-     * @return Graduates
+     * @return Teacher
      */
-    public function setUser(\AppBundle\Entity\Users $user = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -246,7 +187,7 @@ class Graduates
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\Users
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

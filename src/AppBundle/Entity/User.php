@@ -3,15 +3,25 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Users
+ * User
  *
- * @ORM\Table(name="users")
- * @ORM\Entity
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class Users
+class User
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -33,15 +43,6 @@ class Users
      */
     private $role;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
 
 
     /**
@@ -49,7 +50,7 @@ class Users
      *
      * @param string $email
      *
-     * @return Users
+     * @return User
      */
     public function setEmail($email)
     {
@@ -73,7 +74,7 @@ class Users
      *
      * @param string $password
      *
-     * @return Users
+     * @return User
      */
     public function setPassword($password)
     {
@@ -97,7 +98,7 @@ class Users
      *
      * @param string $role
      *
-     * @return Users
+     * @return User
      */
     public function setRole($role)
     {

@@ -5,24 +5,35 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Teachers
+ * Student
  *
- * @ORM\Table(name="teachers", uniqueConstraints={@ORM\UniqueConstraint(name="users_id_2", columns={"users_id"})}, indexes={@ORM\Index(name="users_id", columns={"users_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="student")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StudentRepository")
  */
-class Teachers
+class Student
 {
+    const GENDER_MALE = 'm';
+    const GENDER_FEMALE = 'f';
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="FirstName", type="string", length=30, nullable=false)
+     * @ORM\Column(name="FirstName", type="string", length=255, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="LastName", type="string", length=30, nullable=false)
+     * @ORM\Column(name="LastName", type="string", length=255, nullable=false)
      */
     private $lastname;
 
@@ -34,30 +45,29 @@ class Teachers
     private $dateofbirth;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="gender", type="simple_array", nullable=false)
+     * @ORM\Column(name="gender", type="string", options={"fixed": true}, nullable=false)
      */
     private $gender;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
-     * @var \AppBundle\Entity\Users
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
-     * })
+     * @var int
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="student")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $users;
+    private $user;
+
+    /**
+     * @var int
+     *
+     * Many Students have One ClassNumber
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Grade", inversedBy="student")
+     * @ORM\JoinColumn(name="ClassNumber", referencedColumnName="id")
+     *
+     */
+    private $classnumber;
 
 
 
@@ -66,7 +76,7 @@ class Teachers
      *
      * @param string $firstname
      *
-     * @return Teachers
+     * @return Student
      */
     public function setFirstname($firstname)
     {
@@ -90,7 +100,7 @@ class Teachers
      *
      * @param string $lastname
      *
-     * @return Teachers
+     * @return Student
      */
     public function setLastname($lastname)
     {
@@ -114,7 +124,7 @@ class Teachers
      *
      * @param \DateTime $dateofbirth
      *
-     * @return Teachers
+     * @return Student
      */
     public function setDateofbirth($dateofbirth)
     {
@@ -136,9 +146,9 @@ class Teachers
     /**
      * Set gender
      *
-     * @param array $gender
+     * @param string $gender
      *
-     * @return Teachers
+     * @return Student
      */
     public function setGender($gender)
     {
@@ -150,7 +160,7 @@ class Teachers
     /**
      * Get gender
      *
-     * @return array
+     * @return string
      */
     public function getGender()
     {
@@ -168,26 +178,48 @@ class Teachers
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
+     * @param \AppBundle\Entity\User $user
      *
-     * @return Teachers
+     * @return Student
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
+    }
+
+    /**
+     * Set classnumber
+     *
+     * @param \AppBundle\Entity\Grade $classnumber
+     *
+     * @return Student
+     */
+    public function setClassnumber(\AppBundle\Entity\Grade $classnumber = null)
+    {
+        $this->classnumber = $classnumber;
+
+        return $this;
+    }
+
+    /**
+     * Get classnumber
+     *
+     */
+    public function getClassnumber()
+    {
+        return $this->classnumber;
     }
 }

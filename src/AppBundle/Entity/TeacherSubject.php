@@ -5,26 +5,26 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TeachersSubjects
+ * TeacherSubject
  *
- * @ORM\Table(name="teachers_subjects", uniqueConstraints={@ORM\UniqueConstraint(name="uniq", columns={"teacher_id", "subject_id"})}, indexes={@ORM\Index(name="teacher_id", columns={"teacher_id", "subject_id"}), @ORM\Index(name="subject_id", columns={"subject_id"}), @ORM\Index(name="IDX_AAEF733241807E1D", columns={"teacher_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="teacher_subject", uniqueConstraints={@ORM\UniqueConstraint(name="uniq", columns={"teacher_id", "subject_id"})}, indexes={@ORM\Index(name="teacher_id", columns={"teacher_id", "subject_id"}), @ORM\Index(name="subject_id", columns={"subject_id"}), @ORM\Index(name="IDX_AAEF733241807E1D", columns={"teacher_id"})})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TeacherSubjectRepository")
  */
-class TeachersSubjects
+class TeacherSubject
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var \AppBundle\Entity\Teachers
+     * @var \AppBundle\Entity\Teacher
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Teachers")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Teacher")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="teacher_id", referencedColumnName="id")
      * })
@@ -32,9 +32,9 @@ class TeachersSubjects
     private $teacher;
 
     /**
-     * @var \AppBundle\Entity\Subjects
+     * @var \AppBundle\Entity\Subject
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subjects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subject")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="subject_id", referencedColumnName="id")
      * })
@@ -56,11 +56,11 @@ class TeachersSubjects
     /**
      * Set teacher
      *
-     * @param \AppBundle\Entity\Teachers $teacher
+     * @param \AppBundle\Entity\Teacher $teacher
      *
-     * @return TeachersSubjects
+     * @return TeacherSubject
      */
-    public function setTeacher(\AppBundle\Entity\Teachers $teacher = null)
+    public function setTeacher(\AppBundle\Entity\Teacher $teacher = null)
     {
         $this->teacher = $teacher;
 
@@ -70,7 +70,7 @@ class TeachersSubjects
     /**
      * Get teacher
      *
-     * @return \AppBundle\Entity\Teachers
+     * @return \AppBundle\Entity\Teacher
      */
     public function getTeacher()
     {
@@ -80,11 +80,11 @@ class TeachersSubjects
     /**
      * Set subject
      *
-     * @param \AppBundle\Entity\Subjects $subject
+     * @param \AppBundle\Entity\Subject $subject
      *
-     * @return TeachersSubjects
+     * @return TeacherSubject
      */
-    public function setSubject(\AppBundle\Entity\Subjects $subject = null)
+    public function setSubject(\AppBundle\Entity\Subject $subject = null)
     {
         $this->subject = $subject;
 
@@ -94,7 +94,7 @@ class TeachersSubjects
     /**
      * Get subject
      *
-     * @return \AppBundle\Entity\Subjects
+     * @return \AppBundle\Entity\Subject
      */
     public function getSubject()
     {

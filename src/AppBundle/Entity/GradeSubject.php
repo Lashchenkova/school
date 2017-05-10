@@ -5,26 +5,26 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ClassesSubjects
+ * GradeSubject
  *
- * @ORM\Table(name="classes_subjects", uniqueConstraints={@ORM\UniqueConstraint(name="uniq", columns={"classNumber", "t_s_id"})}, indexes={@ORM\Index(name="classNumber", columns={"classNumber"}), @ORM\Index(name="classNumber_2", columns={"classNumber"}), @ORM\Index(name="subject_id", columns={"t_s_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="grade_subject", uniqueConstraints={@ORM\UniqueConstraint(name="uniq", columns={"classNumber", "t_s_id"})}, indexes={@ORM\Index(name="classNumber", columns={"classNumber"}), @ORM\Index(name="classNumber_2", columns={"classNumber"}), @ORM\Index(name="subject_id", columns={"t_s_id"})})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GradeSubjectRepository")
  */
-class ClassesSubjects
+class GradeSubject
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var \AppBundle\Entity\TeachersSubjects
+     * @var \AppBundle\Entity\GradeSubject
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TeachersSubjects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TeacherSubject")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="t_s_id", referencedColumnName="id")
      * })
@@ -32,9 +32,9 @@ class ClassesSubjects
     private $tS;
 
     /**
-     * @var \AppBundle\Entity\Classes
+     * @var \AppBundle\Entity\Grade
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Classes")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Grade")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="classNumber", referencedColumnName="classNumber")
      * })
@@ -56,11 +56,11 @@ class ClassesSubjects
     /**
      * Set tS
      *
-     * @param \AppBundle\Entity\TeachersSubjects $tS
+     * @param \AppBundle\Entity\TeacherSubject $tS
      *
-     * @return ClassesSubjects
+     * @return GradeSubject
      */
-    public function setTS(\AppBundle\Entity\TeachersSubjects $tS = null)
+    public function setTS(\AppBundle\Entity\TeacherSubject $tS = null)
     {
         $this->tS = $tS;
 
@@ -70,7 +70,6 @@ class ClassesSubjects
     /**
      * Get tS
      *
-     * @return \AppBundle\Entity\TeachersSubjects
      */
     public function getTS()
     {
@@ -80,11 +79,11 @@ class ClassesSubjects
     /**
      * Set classnumber
      *
-     * @param \AppBundle\Entity\Classes $classnumber
+     * @param \AppBundle\Entity\Grade $classnumber
      *
-     * @return ClassesSubjects
+     * @return GradeSubject
      */
-    public function setClassnumber(\AppBundle\Entity\Classes $classnumber = null)
+    public function setClassnumber(\AppBundle\Entity\Grade $classnumber = null)
     {
         $this->classnumber = $classnumber;
 
@@ -94,7 +93,7 @@ class ClassesSubjects
     /**
      * Get classnumber
      *
-     * @return \AppBundle\Entity\Classes
+     * @return \AppBundle\Entity\Grade
      */
     public function getClassnumber()
     {

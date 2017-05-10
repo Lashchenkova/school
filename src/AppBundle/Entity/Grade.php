@@ -5,13 +5,23 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Classes
+ * Grade
  *
- * @ORM\Table(name="classes", uniqueConstraints={@ORM\UniqueConstraint(name="classNumber", columns={"classNumber"}), @ORM\UniqueConstraint(name="classTeacher_2", columns={"classTeacher"})}, indexes={@ORM\Index(name="classTeacher", columns={"classTeacher"})})
- * @ORM\Entity
+ * @ORM\Table(name="grade", uniqueConstraints={@ORM\UniqueConstraint(name="classNumber", columns={"classNumber"}), @ORM\UniqueConstraint(name="classTeacher_2", columns={"classTeacher"})}, indexes={@ORM\Index(name="classTeacher", columns={"classTeacher"})})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GradeRepository")
  */
-class Classes
+class Grade
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -27,21 +37,10 @@ class Classes
     private $classroom;
 
     /**
-     * @var integer
+     * @var \AppBundle\Entity\Teacher
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \AppBundle\Entity\Teachers
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Teachers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="classTeacher", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Teacher")
+     * @ORM\JoinColumn(name="classTeacher", referencedColumnName="id")
      */
     private $classteacher;
 
@@ -52,7 +51,7 @@ class Classes
      *
      * @param string $classnumber
      *
-     * @return Classes
+     * @return Grade
      */
     public function setClassnumber($classnumber)
     {
@@ -76,7 +75,7 @@ class Classes
      *
      * @param string $classroom
      *
-     * @return Classes
+     * @return Grade
      */
     public function setClassroom($classroom)
     {
@@ -108,11 +107,11 @@ class Classes
     /**
      * Set classteacher
      *
-     * @param \AppBundle\Entity\Teachers $classteacher
+     * @param \AppBundle\Entity\Teacher $classteacher
      *
-     * @return Classes
+     * @return Grade
      */
-    public function setClassteacher(\AppBundle\Entity\Teachers $classteacher = null)
+    public function setClassteacher(\AppBundle\Entity\Teacher $classteacher = null)
     {
         $this->classteacher = $classteacher;
 
@@ -122,7 +121,7 @@ class Classes
     /**
      * Get classteacher
      *
-     * @return \AppBundle\Entity\Teachers
+     * @return \AppBundle\Entity\Teacher
      */
     public function getClassteacher()
     {

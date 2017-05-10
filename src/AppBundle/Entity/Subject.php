@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Subjects
+ * Subject
  *
- * @ORM\Table(name="subjects")
- * @ORM\Entity
+ * @ORM\Table(name="subject")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubjectRepository")
  */
-class Subjects
+class Subject
 {
     /**
      * @var string
@@ -24,7 +24,7 @@ class Subjects
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -35,7 +35,7 @@ class Subjects
      *
      * @param string $name
      *
-     * @return Subjects
+     * @return Subject
      */
     public function setName($name)
     {
