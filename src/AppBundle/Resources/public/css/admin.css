@@ -71,6 +71,9 @@ form{
     float: right;
 }
 .btn-large {
+    width: 60px;
+    float: right;
+    margin-top: 1%;
     margin-left: 50px;
     padding: 5px 5px;
     line-height: normal;

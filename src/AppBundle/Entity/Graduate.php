@@ -67,9 +67,7 @@ class Graduate
      * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 

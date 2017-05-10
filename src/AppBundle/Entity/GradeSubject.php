@@ -25,9 +25,7 @@ class GradeSubject
      * @var \AppBundle\Entity\GradeSubject
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TeacherSubject")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="t_s_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="t_s_id", referencedColumnName="id")
      */
     private $tS;
 
@@ -35,9 +33,7 @@ class GradeSubject
      * @var \AppBundle\Entity\Grade
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Grade")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="classNumber", referencedColumnName="classNumber")
-     * })
+     * @ORM\JoinColumn(name="classNumber", referencedColumnName="classNumber")
      */
     private $classnumber;
 

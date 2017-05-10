@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Subject
@@ -13,13 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Subject
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=50, nullable=false)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +21,23 @@ class Subject
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50, nullable=false, unique=true)
+     */
+    private $name;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TeacherSubject", mappedBy="subject")
+     */
+    private $teacherSubject;
+
+    public function __construct() {
+        $this->teacherSubject = new ArrayCollection();
+    }
 
 
 

@@ -97,13 +97,25 @@ form:hover span {
     text-align: center;
     color: white;
 }
-h2 {
-
-}
 h3 {
     font-style: italic;
     padding-top: 5%;
     text-align: right;
 }
-
-
+.alert-warning {
+    margin-right: 5%;
+    float: right;
+    width: 15%;
+    text-align: center;
+    color: #31708f;
+    background-color: #d9edf7;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    opacity: 0.5;
+}
+#forget_password {
+    margin-left: 25%;
+    color: grey;
+}

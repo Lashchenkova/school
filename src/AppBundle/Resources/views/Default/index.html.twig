@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>School</title>
-    {% stylesheets 'bundles/app/css/school.css' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-</head>
-<body>
-<header>
-    <div class="head">
-        <div class="login">
-            <form method="post" action="">
-                <input type="text" name="email" placeholder="Email" required/>
-                <input type="password" name="password" placeholder="Password" required/>
-                <button type="submit" class="btn btn-primary btn-block btn-large">LOGIN</button>
-                <span>use the following data to login as<br>
-                <b>admin: </b>admin@mail.com<br>
-            <b>teacher: </b>teacher@mail.com<br>
-            <b>student: </b>student@mail.com<br>
-            password: <b>12345</b></span>
-            </form>
-        </div>
-    </div>
-</header>
-<div class="sliders">
-    <div class="quote">
-        <h1>Education</h1>
-        <h2>is the most powerful weapon which you can use to change the world.</h2>
-        <h3>Nelson Mandela</h3>
-    </div>
-</div>
-</body>
-
+{% extends 'AppBundle::base.html.twig' %}
+{% block body %}
+    <h1>Hi {{ app.user.username }}</h1>
+{% endblock %}

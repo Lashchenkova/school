@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Grade
@@ -43,6 +44,23 @@ class Grade
      * @ORM\JoinColumn(name="classTeacher", referencedColumnName="id")
      */
     private $classteacher;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GradeSubject", mappedBy="classNumber")
+     */
+    private $gradeSubject;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Student", mappedBy="classNumber")
+     */
+    private $students;
+
+    public function __construct() {
+        $this->gradeSubject = new ArrayCollection();
+        $this->students = new ArrayCollection();
+    }
 
 
 

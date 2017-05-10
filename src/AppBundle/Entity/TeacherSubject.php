@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TeacherSubject
@@ -25,9 +26,7 @@ class TeacherSubject
      * @var \AppBundle\Entity\Teacher
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Teacher")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="teacher_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="teacher_id", referencedColumnName="id")
      */
     private $teacher;
 
@@ -35,14 +34,19 @@ class TeacherSubject
      * @var \AppBundle\Entity\Subject
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subject")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subject_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="subject_id", referencedColumnName="id")
      */
     private $subject;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GradeSubject", mappedBy="t_s_id")
+     */
+    private $gradeSubject;
 
-
+    public function __construct() {
+        $this->gradeSubject = new ArrayCollection();
+    }
     /**
      * Get id
      *
