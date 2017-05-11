@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class TeacherRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllTeachers()
+    {
+        return $this->createQueryBuilder('t')
+            ->select('t.firstname, t.lastname, t.dateofbirth, t.gender, u.email, g.classnumber')
+            ->leftJoin('t.user','u')
+            ->leftJoin('t.grade','g')
+            ->orderBy('t.lastname', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

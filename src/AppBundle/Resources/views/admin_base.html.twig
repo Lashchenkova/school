@@ -33,10 +33,23 @@
                     <li><a href="">Schedule</a></li>
                     <li><a href="">Events</a></li>
                 </ul>
-                <a href="{{ path('logout') }}" class="btn btn-primary btn-block btn-large">LOGOUT</a>
+                {#<a href="{{ path('logout') }}" class="btn btn-primary btn-block btn-large">LOGOUT</a>#}
             </div>
         </div>
     </nav>
+
+    <div class="container">
+
+        {% for flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success" role="alert">{{ flash }}</div>
+        {% endfor %}
+
+        {% for flash in app.session.flashbag.get('fail') %}
+            <div class="alert alert-danger" role="alert">{{ flash }}</div>
+        {% endfor %}
+
+    </div><!-- /.container -->
+
         {% block body %}{% endblock %}
         {% javascripts
         '@AppBundle/Resources/public/js/*'

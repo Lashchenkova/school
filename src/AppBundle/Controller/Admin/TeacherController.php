@@ -18,7 +18,10 @@ class TeacherController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $teachers = $this->get('doctrine')->getRepository('AppBundle:Teacher')->findAll();
+        $teachers = $this
+            ->get('doctrine')
+            ->getRepository('AppBundle:Teacher')
+            ->findAllTeachers();
 
         return ['teachers' => $teachers];
     }

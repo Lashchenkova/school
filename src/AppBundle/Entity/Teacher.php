@@ -63,9 +63,9 @@ class Teacher
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Grade", mappedBy="classTeacher")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Grade", mappedBy="classteacher")
      */
-    private $grades;
+    private $grade;
 
     /**
      * @var ArrayCollection
@@ -74,7 +74,7 @@ class Teacher
     private $teacherSubject;
 
     public function __construct() {
-        $this->grades = new ArrayCollection();
+        $this->grade = new ArrayCollection();
         $this->teacherSubject = new ArrayCollection();
     }
 

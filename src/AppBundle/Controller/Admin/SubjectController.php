@@ -18,8 +18,11 @@ class SubjectController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $subjects = $this->get('doctrine')->getRepository('AppBundle:Subject')->findAll();
-
+        $subjects = $this
+            ->get('doctrine')
+            ->getRepository('AppBundle:TeacherSubject')
+            ->findAllSubjects();
+        dump($subjects);
         return ['subjects' => $subjects];
     }
 }

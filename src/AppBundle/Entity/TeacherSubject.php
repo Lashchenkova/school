@@ -40,12 +40,12 @@ class TeacherSubject
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GradeSubject", mappedBy="t_s_id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GradeSubject", mappedBy="tS")
      */
-    private $gradeSubject;
+    private $gradesubject;
 
     public function __construct() {
-        $this->gradeSubject = new ArrayCollection();
+        $this->gradesubject = new ArrayCollection();
     }
     /**
      * Get id

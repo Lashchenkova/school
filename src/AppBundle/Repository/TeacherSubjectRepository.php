@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class TeacherSubjectRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllSubjects()
+    {
+        return $this->createQueryBuilder('ts')
+            ->select('t.lastname, t.firstname, s.name,
+            GROUP_CONCAT( IDENTITY(gs.classnumber) ORDER BY gs.classnumber*1, gs.classnumber) AS classnumbers')
+            ->join('ts.teacher','t')
+            ->join('ts.subject','s')
+            ->join('ts.gradesubject','gs')
+            ->groupBy('s.name, t.lastname')
+//            ->orderBy('g.classnumber*1, g.classnumber', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

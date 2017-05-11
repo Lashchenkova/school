@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2017 at 09:47 PM
+-- Generation Time: May 11, 2017 at 01:33 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -615,7 +615,7 @@ ALTER TABLE `graduate`
 ALTER TABLE `student`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_B723AF33A76ED395` (`user_id`),
-  ADD KEY `IDX_B723AF337B4F581F` (`ClassNumber`);
+  ADD KEY `IDX_B723AF33FA7FD2FE` (`ClassNumber`);
 
 --
 -- Indexes for table `subject`
